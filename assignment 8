@@ -1,0 +1,183 @@
+1.Write a program to enter the salary and grade of the employee.
+import java.util.Scanner;
+public class EmployeeBonusCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the grade of the employee: ");
+        String grade = scanner.next();
+
+        System.out.print("Enter the employee salary: ");
+        double salary = scanner.nextDouble();
+
+        if (salary < 0) {
+            System.out.println("Invalid salary. Salary cannot be negative.");
+            return;
+        }
+
+        double bonus = 0;
+
+        if (grade.equalsIgnoreCase("A")) {
+            bonus = salary * 0.05;
+        } else if (grade.equalsIgnoreCase("B")) {
+            bonus = salary * 0.10;
+        }
+
+        if (salary < 10000) {
+            bonus += salary * 0.02;
+        }
+
+        double totalSalary = salary + bonus;
+
+        System.out.println("Salary = " + salary);
+        System.out.println("Bonus = " + bonus);
+        System.out.println("Total to be paid = " + totalSalary);
+    }
+}
+2.Write a program to print the first n perfect numbers.
+import java.util.Scanner;
+
+public class PerfectNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the value of N: ");
+        if (!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a positive integer.");
+            return;
+        }
+        
+        int n = scanner.nextInt();
+        
+        if (n <= 0) {
+            System.out.println("Invalid input. N must be a positive integer.");
+            return;
+        }
+
+        int count = 0;
+        int num = 1;
+
+        System.out.print("First " + n + " perfect numbers are: ");
+        while (count < n) {
+            if (isPerfectNumber(num)) {
+                System.out.print(num + " ");
+                count++;
+            }
+            num++;
+        }
+    }
+
+    public static boolean isPerfectNumber(int num) {
+        int sum = 0;
+        for (int i = 1; i <= num / 2; i++) {
+            if (num % i == 0) {
+                sum += i;
+            }
+        }
+        return sum == num;
+    }
+}
+3.Write a program to enter the marks of a student in four subjects. Then calculate the total and aggregate
+import java.util.Scanner;
+
+public class StudentGrades {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double[] marks = new double[4];
+        String[] subjects = {"Python", "C Programming", "Mathematics", "Physics"};
+
+        for (int i = 0; i < 4; i++) {
+            System.out.print("Enter the marks in " + subjects[i] + ": ");
+            if (!scanner.hasNextDouble()) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                return;
+            }
+            marks[i] = scanner.nextDouble();
+            if (marks[i] < 0) {
+                System.out.println("Invalid input. Marks cannot be negative.");
+                return;
+            }
+        }
+
+        double total = 0;
+        for (double mark : marks) {
+            total += mark;
+        }
+
+        double aggregate = total / 4;
+        String grade;
+
+        if (aggregate > 75) {
+            grade = "DISTINCTION";
+        } else if (aggregate >= 60) {
+            grade = "FIRST DIVISION";
+        } else if (aggregate >= 50) {
+            grade = "SECOND DIVISION";
+        } else if (aggregate >= 40) {
+            grade = "THIRD DIVISION";
+        } else {
+            grade = "FAIL";
+        }
+
+        System.out.println("Total = " + total);
+        System.out.println("Aggregate = " + aggregate);
+        System.out.println(grade);
+    }
+}
+4.Write a program to read the numbers until -1 is encountered. Find the average of positive numbers and negative numbers entered by user.
+import java.util.Scanner;
+
+public class NumberAverages {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int positiveSum = 0, negativeSum = 0, positiveCount = 0, negativeCount = 0;
+        double number;
+
+        System.out.println("Enter -1 to exit...");
+
+        while (true) {
+            System.out.print("Enter the number: ");
+            number = scanner.nextDouble();
+            if (number == -1) break;
+            if (number > 0) {
+                positiveSum += number;
+                positiveCount++;
+            } else if (number < 0) {
+                negativeSum += number;
+                negativeCount++;
+            }
+        }
+
+        double positiveAvg = (positiveCount > 0) ? (double) positiveSum / positiveCount : 0;
+        double negativeAvg = (negativeCount > 0) ? (double) negativeSum / negativeCount : 0;
+
+        System.out.println("The average of negative numbers is: " + negativeAvg);
+        System.out.println("The average of positive numbers is: " + positiveAvg);
+    }
+}
+5.Write a program to read a character until a * is encountered. Also count the number of uppercase, lowercase, and numbers entered by the users.
+import java.util.Scanner;
+
+public class CharacterCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int upperCaseCount = 0, lowerCaseCount = 0, numberCount = 0;
+        char ch;
+
+        System.out.println("Enter * to exit...");
+
+        while (true) {
+            System.out.print("Enter any character: ");
+            ch = scanner.next().charAt(0);
+            if (ch == '*') break;
+            if (Character.isUpperCase(ch)) upperCaseCount++;
+            else if (Character.isLowerCase(ch)) lowerCaseCount++;
+            else if (Character.isDigit(ch)) numberCount++;
+        }
+
+        System.out.println("Total count of lower case: " + lowerCaseCount);
+        System.out.println("Total count of upper case: " + upperCaseCount);
+        System.out.println("Total count of numbers: " + numberCount);
+    }
+}
