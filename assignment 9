@@ -1,0 +1,91 @@
+1.factorial:
+public class Factorial {
+    public static int factorial(int n) {
+        if (n == 0) {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        }
+    }
+    public static void main(String[] args) {
+        // Input value
+        int n = 6;
+        // Calculate factorial
+        int result = factorial(n);
+        // Print the result
+        System.out.println("The factorial of " + n + " is: " + result);
+    }
+}
+2.nth largest number:
+import java.util.Arrays;
+import java.util.Collections;
+public class NthLargestNumber {
+    public static int findNthLargest(Integer[] arr, int n) {
+        // Sort the array in descending order
+        Arrays.sort(arr, Collections.reverseOrder());
+        // Return the Nth largest number
+        return arr[n - 1];
+    }
+    public static void main(String[] args) {
+        // Input array
+        Integer[] arr = {14, 67, 48, 23, 5, 62};
+        // Value of N
+        int n = 4;
+        // Find and print the Nth largest number
+        int nthLargest = findNthLargest(arr, n);
+        System.out.println(n + "th Largest number: " + nthLargest);
+    }
+}
+3.binary to decimal and octal:
+public class BinaryConversion {
+    // Method to convert binary to decimal
+    public static int binaryToDecimal(String binary) {
+        return Integer.parseInt(binary, 2);
+    }
+    public static String decimalToOctal(int decimal) {
+        return Integer.toOctalString(decimal);
+    }
+    public static void main(String[] args) {
+        String binary = "1101";
+        int decimal = binaryToDecimal(binary);
+        String octal = decimalToOctal(decimal);
+        System.out.println("Given Number: " + binary);
+        System.out.println("Decimal Number: " + decimal);
+        System.out.println("Octal: " + octal);
+    }
+}
+4.Number of special Characters: 
+public class SpecialCharacterCounter {
+    public static int countSpecialCharacters(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (!Character.isLetterOrDigit(ch) && !Character.isWhitespace(ch)) {
+                count++;
+            }
+        }
+        return count;
+    }
+    public static void main(String[] args) {
+        String statement = "Modi Birthday @ September 17, #&$% is the wishes code for him.";
+        int specialCharacterCount = countSpecialCharacters(statement);
+        System.out.println("Given statement: " + statement);
+        System.out.println("Number of special Characters: " + specialCharacterCount);
+    }
+}
+5.Non-duplicate items:
+import java.util.HashSet;
+import java.util.Set;
+import java.util.ArrayList;
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        int[] array = {10, 20, 20, 30, 40, 40, 50};
+        Set<Integer> uniqueElements = new HashSet<>();
+        for (int element : array) {
+            uniqueElements.add(element);
+        }
+        ArrayList<Integer> nonDuplicateList = new ArrayList<>(uniqueElements);
+        System.out.println("Non-duplicate items:");
+        System.out.println(nonDuplicateList);
+    }
+}
