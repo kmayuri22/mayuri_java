@@ -1,0 +1,126 @@
+1.
+public class Main {
+    public static void main(String[] args) {
+        Bank sbi = new SBI();
+        Bank icici = new ICICI();
+        Bank axis = new AXIS();
+
+        System.out.println("SBI Rate of Interest: " + sbi.getRateOfInterest());
+        System.out.println("ICICI Rate of Interest: " + icici.getRateOfInterest());
+        System.out.println("AXIS Rate of Interest: " + axis.getRateOfInterest());
+    }
+class Bank {
+    double getRateOfInterest() {
+        return 0;
+    }
+}
+class SBI extends Bank {
+    double getRateOfInterest() {
+        return 8.4;
+    }
+}
+class ICICI extends Bank {
+    double getRateOfInterest() {
+        return 7.3;
+    }
+}
+class AXIS extends Bank {
+    double getRateOfInterest() {
+        return 9.7;
+    }
+}
+}
+2.
+public class Main {
+    public static void main(String[] args) {
+        SubClass obj = new SubClass(100, 200);
+        obj.display();
+    }
+class SuperClass {
+    int value;
+
+    SuperClass(int value) {
+        this.value = value;
+    }
+
+    void display() {
+        System.out.println("Value from SuperClass: " + value);
+    }
+}
+class SubClass extends SuperClass {
+    int value;
+    SubClass(int superValue, int subValue) {
+        super(superValue);
+        this.value = subValue;
+    }
+    void display() {
+        super.display();
+        System.out.println("Value from SubClass: " + value);
+    }
+}
+}
+3.class MultiplicationTable implements Runnable {
+    private int number;
+
+    MultiplicationTable(int number) {
+        this.number = number;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(number + " X " + i + " = " + (number * i));
+        }
+    }
+
+    public static void main(String[] args) {
+        Thread thread1 = new Thread(new MultiplicationTable(5));
+        Thread thread2 = new Thread(new MultiplicationTable(10));
+        
+        thread1.start();
+        thread2.start();
+    }
+}
+4.
+class Fibonacci implements Runnable {
+    private int n;
+
+    Fibonacci(int n) {
+        this.n = n;
+    }
+
+    public void run() {
+        int a = 0, b = 1, c;
+        System.out.print(a + " " + b);
+
+        for (int i = 2; i < n; i++) {
+            c = a + b;
+            System.out.print(" " + c);
+            a = b;
+            b = c;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Thread thread = new Thread(new Fibonacci(5));
+        thread.start();
+    }
+}
+5.
+public class Main {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+        int N = 5;
+        int sum = 0;
+
+        try {
+            for (int i = 0; i <= N; i++) {
+                sum += numbers[i];
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index out of bounds");
+        }
+
+        System.out.println("Sum: " + sum);
+    }
+}
