@@ -1,0 +1,107 @@
+1.Check if a Number is Prime using Runnable Interface:
+class PrimeCheck implements Runnable {
+    private int number;
+
+    PrimeCheck(int number) {
+        this.number = number;
+    }
+
+    public void run() {
+        if (number <= 1) {
+            System.out.println(number + " is not Prime");
+            return;
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                System.out.println(number + " is not Prime");
+                return;
+            }
+        }
+        System.out.println(number + " is Prime");
+    }
+
+    public static void main(String[] args) {
+        int num = 5;
+        Thread thread = new Thread(new PrimeCheck(num));
+        thread.start();
+    }
+}
+2.Handle Multiple Exceptions using Multi-Catch Statements:
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0; // ArithmeticException
+            int[] array = new int[5];
+            System.out.println(array[10]); // ArrayIndexOutOfBoundsException
+            String str = null;
+            System.out.println(str.length()); // NullPointerException
+        } catch (ArithmeticException | ArrayIndexOutOfBoundsException | NullPointerException e) {
+            System.out.println("Exception caught: " + e);
+        }
+    }
+}
+3.Write and Read a String using FileWriter and FileReader:
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        String text = "Computer Science and Engineering";
+        try (FileWriter writer = new FileWriter("output.txt")) {
+            writer.write(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileReader reader = new FileReader("output.txt")) {
+            int character;
+            while ((character = reader.read()) != -1) {
+                System.out.print((char) character);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+4.Volume of Box using Default Constructor:
+class Box {
+    double width, height, depth;
+
+    Box() {
+        width = 1;
+        height = 1;
+        depth = 1;
+    }
+
+    double volume() {
+        return width * height * depth;
+    }
+
+    public static void main(String[] args) {
+        Box box = new Box();
+        System.out.println("Volume of Box: " + box.volume());
+    }
+}
+5.String Operations:
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a string: ");
+        String input = "Welcome to Saveetha university"; // Using a predefined string as example
+
+        // Replace a word
+        String replacedString = input.replace("Saveetha", "OpenAI");
+        System.out.println("Replaced String: " + replacedString);
+
+        // Find length
+        int length = input.length();
+        System.out.println("Length of String: " + length);
+
+        // Uppercase conversion
+        String upperCaseString = input.toUpperCase();
+        System.out.println("Uppercase String: " + upperCaseString);
+    }
+}
