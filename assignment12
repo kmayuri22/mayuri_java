@@ -1,0 +1,113 @@
+1.HashTable for Bank Details:
+import java.util.Hashtable;
+public class Main {
+    public static void main(String[] args) {
+        Hashtable<Integer, String> bankDetails = new Hashtable<>();
+        bankDetails.put(101, "John Doe");
+        bankDetails.put(102, "Jane Smith");
+        bankDetails.put(103, "Mike Johnson");
+        System.out.println("Size of HashTable: " + bankDetails.size());
+        bankDetails.clear();
+        System.out.println("HashTable cleared. Size now: " + bankDetails.size());
+    }
+}
+2. Employee Record using Map Interface:
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<Integer, String> employeeRecord = new HashMap<>();
+        employeeRecord.put(1, "John Doe");
+        employeeRecord.put(2, "Jane Smith");
+        System.out.println("Is employee record empty? " + employeeRecord.isEmpty());
+        employeeRecord.remove(1);
+        System.out.println("Employee record after removal: " + employeeRecord);
+        employeeRecord.clear();
+        System.out.println("Employee record after clearing: " + employeeRecord);
+    }
+}
+3.Simple Generics Class for Sorting:
+import java.util.Arrays;
+
+class GenericSorter<T extends Comparable<T>> {
+    private T[] array;
+
+    GenericSorter(T[] array) {
+        this.array = array;
+    }
+
+    void sort() {
+        Arrays.sort(array);
+    }
+
+    void display() {
+        for (T element : array) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Integer[] intArray = {5, 2, 8, 3, 1};
+        GenericSorter<Integer> intSorter = new GenericSorter<>(intArray);
+        intSorter.sort();
+        intSorter.display();
+
+        String[] strArray = {"banana", "apple", "cherry"};
+        GenericSorter<String> strSorter = new GenericSorter<>(strArray);
+        strSorter.sort();
+        strSorter.display();
+    }
+}
+4.ListIterator for Modifying and Reversing List:
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("C");
+        list.add("A");
+        list.add("E");
+        list.add("B");
+        list.add("D");
+        list.add("F");
+
+        ListIterator<String> iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            String element = iterator.next();
+            iterator.set(element + "+");
+        }
+        while (iterator.hasPrevious()) {
+            System.out.print(iterator.previous() + " ");
+        }
+    }
+}
+5. Arithmetic Operations with Exception Handling:
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter first number: ");
+        int num1 = scanner.nextInt();
+        System.out.print("Enter second number: ");
+        int num2 = scanner.nextInt();
+
+        try {
+            int sum = num1 + num2;
+            int difference = num1 - num2;
+            int product = num1 * num2;
+            int quotient = num1 / num2;
+
+            System.out.println("Sum: " + sum);
+            System.out.println("Difference: " + difference);
+            System.out.println("Product: " + product);
+            System.out.println("Quotient: " + quotient);
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: Division by zero is not allowed.");
+        }
+    }
+}
