@@ -1,0 +1,121 @@
+1.Create Three Threads to Display Natural Numbers:
+public class NaturalNumbersThreads {
+    public static void main(String[] args) {
+        Runnable printNumbers = () -> {
+            for (int i = 1; i <= 10; i++) {
+                System.out.println(Thread.currentThread().getName() + ": " + i);
+                try {
+                    Thread.sleep(500); // Sleep for 500 milliseconds
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread t1 = new Thread(printNumbers, "Thread 1");
+        Thread t2 = new Thread(printNumbers, "Thread 2");
+        Thread t3 = new Thread(printNumbers, "Thread 3");
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+2. Find Missing Number in Array:
+public class MissingNumber {
+    public static void main(String[] args) {
+        int[] a = {1, 4, 5, 3, 7, 8, 6};
+        int n = 8;
+        int totalSum = n * (n + 1) / 2;
+        int sum = 0;
+        for (int num : a) {
+            sum += num;
+        }
+        int missingNumber = totalSum - sum;
+        System.out.println("Missing number: " + missingNumber);
+    }
+}
+3.Parent and Child Class Method Calls:
+class Parent {
+    void display() {
+        System.out.println("This is parent class");
+    }
+}
+
+class Child extends Parent {
+    void show() {
+        System.out.println("This is child class");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent parent = new Parent();
+        Child child = new Child();
+        
+        parent.display(); // Method of parent class by parent object
+        child.show();     // Method of child class by child object
+        child.display();  // Method of parent class by child object
+    }
+}
+4.Student Class with Total and Average Calculation:
+class Student {
+    String name;
+    int regNumber;
+    int[] marks = new int[5];
+    int total;
+    double average;
+
+    Student(String name, int regNumber, int[] marks) {
+        this.name = name;
+        this.regNumber = regNumber;
+        this.marks = marks;
+        calculateTotalAndAverage();
+    }
+
+    void calculateTotalAndAverage() {
+        for (int mark : marks) {
+            total += mark;
+        }
+        average = total / 5.0;
+    }
+
+    void displayDetails() {
+        System.out.println("Student: " + name);
+        System.out.println("Register Number: " + regNumber);
+        System.out.println("Marks: " + total);
+        System.out.println("Average: " + average);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int[] marks = {85, 90, 78, 88, 76};
+        Student student = new Student("John Doe", 12345, marks);
+        student.displayDetails();
+    }
+}
+5.Count Words, Characters, and Lines from a File:
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileStats {
+    public static void main(String[] args) {
+        String fileName = "example.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            int lines = 0, words = 0, characters = 0;
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines++;
+                characters += line.length();
+                words += line.split("\\s+").length;
+            }
+            System.out.println("Lines: " + lines);
+            System.out.println("Words: " + words);
+            System.out.println("Characters: " + characters);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
